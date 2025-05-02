@@ -1,0 +1,165 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+@layer components {
+    /* container */
+
+    .main-container {
+        @apply flex flex-col h-screen bg-gray-50
+    }
+
+    /* header */
+
+    .header-container {
+        @apply bg-blue-800 text-white p-4 w-full
+    }
+
+    .header-content {
+        @apply max-w-7xl mx-auto flex items-center
+    }
+
+    .title-logo {
+        @apply text-xl font-bold
+    }
+
+    .nav-list {
+        @apply flex space-x-6 ml-6
+    }
+
+    .nav-link {
+        @apply hover:text-gray-300 transition-colors
+    }
+
+    /* content */
+
+    .content {
+        @apply w-full flex-1 px-2 py-6 max-w-7xl mx-auto mb-6
+    }
+
+    .content-title {
+        @apply flex justify-between items-center mb-6
+    }
+
+    .content-title span {
+        @apply flex space-x-1
+    }
+
+    .page-title {
+        @apply text-2xl
+    }
+
+    .btn-primary {
+        @apply bg-blue-500 hover:bg-blue-600 transition-colors text-white px-4 py-2 rounded-md 
+    }
+
+    /* form */
+    
+    .form-container {
+        @apply mt-6 bg-white rounded-lg p-6
+    }
+
+    .form-label {
+        @apply block text-sm font-semibold
+    }
+
+    .form-input {
+        @apply border p-2 w-full mt-1 rounded-md border-blue-50 shadow-sm focus:border-blue-100 focus:ring-0 focus:ring-blue-50 focus:outline-none
+    }
+
+    .form-button {
+        @apply bg-cyan-700 hover:bg-cyan-800 transition-colors text-white px-4 py-2 rounded-md 
+    }
+
+    /* alert */
+
+    .alert-success {
+        @apply p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-100 
+    }
+
+    .alert-error {
+        @apply p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-100 
+    }
+
+    /* table */
+
+    .table-container {
+        @apply overflow-x-auto bg-white shadow-md rounded-lg
+    }
+
+    .table {
+        @apply min-w-full border-collapse w-full
+    }
+
+    .table-header {
+        @apply bg-blue-400 text-white uppercase text-sm leading-normal
+    }
+
+    .table-header th {
+        @apply py-3 px-6 text-left
+    }
+
+    .table-header .center {
+        @apply text-center
+    }
+
+    .table-body {
+        @apply text-gray-700 text-sm  font-light
+    }
+
+    .table-row {
+        @apply border-b border-gray-200 hover:bg-blue-50 transition
+    }
+
+    .table-cell {
+        @apply py-3 px-6
+    }
+
+    .table-actions {
+        @apply py-3 px-6 text-center flex space-x-1
+    }
+
+    .btn-view {
+        @apply bg-green-500 hover:bg-green-600 transition-colors text-white px-4 py-2 rounded-md 
+    }
+
+    .btn-edit {
+        @apply bg-amber-500 hover:bg-amber-600 transition-colors text-white px-4 py-2 rounded-md 
+    }
+
+    .btn-delete {
+        @apply bg-red-500 hover:bg-red-600 transition-colors text-white px-4 py-2 rounded-md 
+    }
+
+    /* pagination */
+
+    .paginate {
+        @apply mt-2 p-3
+    }
+
+    /* information */
+
+    .info-container {
+        @apply bg-white shadow-md rounded-lg p-6
+    }
+
+    .info-title {
+        @apply text-xl font-semibold mb-4
+    }
+
+    .info-text {
+        @apply text-gray-700 mb-1
+    }
+
+    .bold {
+        @apply font-bold 
+    }
+}
