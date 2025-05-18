@@ -18,3 +18,6 @@ Route::put('/update/{user}', [UserController::class, 'update'])->name('user.upda
 Route::get('/view/user/{user}', [UserController::class, 'show'])->name('user.view');
 
 Route::delete('/destroy/{user}', [UserController::class, 'destroy'])->name('user.destroy');
+
+Route::get('/generate-pdf/{user}', [UserController::class, 'generatePdf'])->name('user.generate-pdf'); // fazer download do arquivo
+// Route::get('/generate-pdf/{user}', [UserController::class, 'sendPdf'])->name('user.generate-pdf'); // enviar por email

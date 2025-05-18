@@ -13,9 +13,12 @@ node 22.15.0 ou superior
 `` npm run dev ``
 `` php artisan make:component nomeDoComponente --view `` 
 `` php artisan make:request nomeDoRequest `` 
+`` php artisan make:mail nomeDaClasse ``
 
 ### Rodar o projeto
 Duplicar o arquivo ".env.exemple" e renomear para ".env"
+
+Colocar seu Username e Password do mailtrap ou Iagente no arquivo env
 
 ``composer install`` para as dependências 
 

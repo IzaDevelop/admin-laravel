@@ -139,6 +139,10 @@
         @apply bg-red-500 hover:bg-red-600 transition-colors text-white px-4 py-2 rounded-md 
     }
 
+    .btn-download {
+        @apply bg-purple-500 hover:bg-purple-600 transition-colors text-white px-4 py-2 rounded-md 
+    }
+
     /* pagination */
 
     .paginate {
