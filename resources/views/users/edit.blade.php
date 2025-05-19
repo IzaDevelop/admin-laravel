@@ -5,7 +5,7 @@
         <section class="content-title">
             <h1 class="page-title">Editar Usuário</h1>
             <span>
-                <a href="{{ route('user.list') }}" class="btn-primary">Listar</a>
+                <a href="{{ route('user.list') }}" class="btn-list">Listar</a>
                 <a href="{{ route('user.view', ['user' => $user->id]) }}" class="btn-view">Visualizar</a>
             </span>
         </section>
@@ -29,7 +29,7 @@
             </div>
 
             <div>
-                <button type="submit" class="form-button">Salvar</button>
+                <button type="submit" class="btn-geral">Salvar</button>
             </div>
         </form>
     </article>

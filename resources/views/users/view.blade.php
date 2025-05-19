@@ -6,7 +6,7 @@
             <h1 class="page-title">Detalhes do Usuário</h1>
             <span>
                 <a href="{{ route('user.generate-pdf', ['user' => $user->id]) }}" class="btn-download">Gerar PDF</a>
-                <a href="{{ route('user.list') }}" class="btn-primary">Listar</a>
+                <a href="{{ route('user.list') }}" class="btn-list">Listar</a>
                 <a href="{{ route('user.edit', ['user' => $user->id]) }}" class="btn-edit">Editar</a>
                 <form id="delete-form-{{ $user->id }}" action="{{ route('user.destroy', ['user' => $user->id]) }}" method="POST">
                     @csrf

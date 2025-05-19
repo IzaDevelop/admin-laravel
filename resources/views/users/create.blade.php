@@ -4,7 +4,7 @@
     <article class="content">
         <section class="content-title">
             <h1 class="page-title">Cadastrar Usuário</h1>
-            <a href="{{ route('user.list') }}" class="btn-primary">Listar</a>
+            <a href="{{ route('user.list') }}" class="btn-list">Listar</a>
         </section>
 
         <x-alert/>
@@ -31,7 +31,7 @@
             </div>
 
             <div>
-                <button type="submit" class="btn-primary">Cadastrar</button>
+                <button type="submit" class="btn-create">Cadastrar</button>
             </div>
         </form>
     </article>

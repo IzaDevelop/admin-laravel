@@ -7,16 +7,32 @@ use App\Mail\UserPDF;
 use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Exception;
-use FontLib\Table\Type\name;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::orderByDesc('id')->paginate(2);
+        // $users = User::orderByDesc('id')->paginate(10);
+        $search = $request->input('search');
 
-        return view('users.list', ['users' => $users]);
+        $users = User::when(
+            $search,
+            fn($query) =>
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', '%' . $search . '%')
+                  ->orWhere('email', 'like', '%' . $search . '%');
+            })
+        )
+        ->orderByDesc('id')
+        ->paginate(10)
+        ->withQueryString();
+        
+        return view('users.list', [
+            'users' => $users, 
+            'search' => $search
+        ]);
     }
 
     public function create()

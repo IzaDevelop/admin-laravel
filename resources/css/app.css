@@ -57,10 +57,6 @@
         @apply text-2xl
     }
 
-    .btn-primary {
-        @apply bg-blue-500 hover:bg-blue-600 transition-colors text-white px-4 py-2 rounded-md 
-    }
-
     /* form */
     
     .form-container {
@@ -74,9 +70,9 @@
     .form-input {
         @apply border p-2 w-full mt-1 rounded-md border-blue-50 shadow-sm focus:border-blue-100 focus:ring-0 focus:ring-blue-50 focus:outline-none
     }
-
-    .form-button {
-        @apply bg-cyan-700 hover:bg-cyan-800 transition-colors text-white px-4 py-2 rounded-md 
+    
+    .form-search {
+        @apply border p-2 w-full rounded-md border-blue-50 shadow-sm focus:border-blue-100 focus:ring-0 focus:ring-blue-50 focus:outline-none
     }
 
     /* alert */
@@ -91,7 +87,7 @@
 
     /* table */
 
-    .table-container {
+    .table-container > table {
         @apply overflow-x-auto bg-white shadow-md rounded-lg
     }
 
@@ -124,11 +120,21 @@
     }
 
     .table-actions {
-        @apply py-3 px-6 text-center flex space-x-1
+        @apply py-3 px-6 text-center flex justify-between space-x-1
+    }
+
+    /* buttons */
+  
+    .btn-list {
+        @apply bg-blue-500 hover:bg-blue-600 transition-colors text-white px-4 py-2 rounded-md 
+    }
+
+    .btn-create {
+        @apply bg-sky-500 hover:bg-sky-600 transition-colors text-white px-4 py-2 rounded-md 
     }
 
     .btn-view {
-        @apply bg-green-500 hover:bg-green-600 transition-colors text-white px-4 py-2 rounded-md 
+        @apply bg-lime-500 hover:bg-lime-600 transition-colors text-white px-4 py-2 rounded-md 
     }
 
     .btn-edit {
@@ -136,11 +142,19 @@
     }
 
     .btn-delete {
-        @apply bg-red-500 hover:bg-red-600 transition-colors text-white px-4 py-2 rounded-md 
+        @apply bg-red-500 hover:bg-red-600 transition-colors text-white px-4 py-2 rounded-md cursor-pointer
     }
 
     .btn-download {
         @apply bg-purple-500 hover:bg-purple-600 transition-colors text-white px-4 py-2 rounded-md 
+    }
+
+    .btn-outline {
+        @apply flex justify-center w-full md:w-12 border px-2 py-2 rounded-lg cursor-pointer
+    }
+
+    .btn-outline img {
+        @apply w-5 md:w-10 h-auto
     }
 
     /* pagination */
