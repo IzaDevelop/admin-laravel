@@ -55,9 +55,11 @@ class UserController extends Controller
             });
         })
         ->when($startDate, function ($query) use ($startDate) {
+            // para usar o horário como filtro, remova o startOfDay()
             $query->where('created_at', '>=', Carbon::parse($startDate)->startOfDay());
         })
         ->when($endDate, function ($query) use ($endDate) {
+            // para usar o horário como filtro, remova o endOfDay()
             $query->where('created_at', '<=', Carbon::parse($endDate)->endOfDay());
         })
     
