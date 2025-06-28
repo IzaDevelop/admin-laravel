@@ -21,11 +21,14 @@
                 placeholder="Buscar nome ou e-mail">
 
             <div class="flex flex-1 justify-between gap-3">
-                <button type="submit" class="btn-outline">
+                <button type="submit" class="btn-outline btn-search">
                     <img src="{{ asset('images/search.svg') }}" alt="Pesquisar">
                 </button>
-                <a href="{{ route('user.list') }}" class="btn-outline">
+                <a href="{{ route('user.list') }}" class="btn-outline btn-clean">
                     <img src="{{ asset('images/broom.svg') }}" alt="Limpar">
+                </a>
+                <a href="{{ url('generate-pdf-users') . (request()->getQueryString() ? '?' . request()->getQueryString() : '') }}" class="btn-outline btn-download">
+                    <img src="{{ asset('images/download.svg') }}" alt="Download">
                 </a>
             </div>
         </form>

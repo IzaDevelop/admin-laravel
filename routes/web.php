@@ -21,3 +21,5 @@ Route::delete('/destroy/{user}', [UserController::class, 'destroy'])->name('user
 
 Route::get('/generate-pdf/{user}', [UserController::class, 'generatePdf'])->name('user.generate-pdf'); // fazer download do arquivo
 // Route::get('/generate-pdf/{user}', [UserController::class, 'sendPdf'])->name('user.generate-pdf'); // enviar por email
+
+Route::get('/generate-pdf-users', [UserController::class, 'generatePdfUsers'])->name('user.generate-pdf-users');

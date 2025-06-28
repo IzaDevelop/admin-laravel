@@ -167,4 +167,44 @@ class UserController extends Controller
             return back()->with('error', 'Erro ao enviar o PDF.');
         }
     }
+
+    public function generatePdfUsers(Request $request) 
+    {
+        try {
+            $search = $request->input('search');
+            $startDate = $request->input('startDate');
+            $endDate = $request->input('endDate');
+
+            $users = User::query()
+            ->when($search, function ($query) use ($search) {
+                $query->where(function ($q) use ($search) {
+                    $q->where('name', 'like', '%' . $search . '%')
+                    ->orWhere('email', 'like', '%' . $search . '%');
+                });
+            })
+            ->when($startDate, function ($query) use ($startDate) {
+                $query->where('created_at', '>=', Carbon::parse($startDate)->startOfDay());
+            })
+            ->when($endDate, function ($query) use ($endDate) {
+                $query->where('created_at', '<=', Carbon::parse($endDate)->endOfDay());
+            })
+            ->orderByDesc('id')
+            ->get();
+
+            $totalRecords = $users->count('id');
+            $numberRecordsAllowes = 500;
+            if ( $totalRecords > $numberRecordsAllowes ) {
+                return back()
+                ->with('error', "Limite de registros ultrapassados para gerar o PDF. O limite é de $numberRecordsAllowes registros");
+            }
+
+            $pdf = Pdf::loadView('users.generate-pdf-users', [
+                'users' => $users
+            ])->setPaper('a4', 'portrait');
+
+            return $pdf->download('lista-de-usuarios.pdf');
+        } catch (Exception $e) {
+            return back()->with('error', 'Erro ao gerar o PDF.');
+        }
+    }
 }
