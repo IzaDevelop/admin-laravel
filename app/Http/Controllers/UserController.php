@@ -6,6 +6,7 @@ use App\Http\Requests\UserRequest;
 use App\Mail\UserPDF;
 use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -16,22 +17,59 @@ class UserController extends Controller
     {
         // $users = User::orderByDesc('id')->paginate(10);
         $search = $request->input('search');
+        $startDate = $request->input('startDate');
+        $endDate = $request->input('endDate');
 
-        $users = User::when(
-            $search,
-            fn($query) =>
+        // VERSÂO 0 : apenas campo de busca por nome/email
+        // $users = User::when(
+        //     $search,
+        //     fn($query) =>
+        //     $query->where(function ($q) use ($search) {
+        //         $q->where('name', 'like', '%' . $search . '%')
+        //           ->orWhere('email', 'like', '%' . $search . '%');
+        //     })
+        // )
+
+        // VERSÂO 1 : assim só funciona se todos os campos estiverem preenchidos
+        // $users = User::when($search, function ($query) use ($search, $startDate, $endDate) {
+        //     $query->where(function ($q) use ($search) {
+        //         $q->where('name', 'like', '%' . $search . '%')
+        //         ->orWhere('email', 'like', '%' . $search . '%');
+        //     });
+
+        //     if ($startDate) {
+        //         $query->where('created_at', '>=', Carbon::parse($startDate)->startOfDay());
+        //     }
+
+        //     if ($endDate) {
+        //         $query->where('created_at', '<=', Carbon::parse($endDate)->endOfDay());
+        //     }
+        // })
+
+        // VERSÂO 2 : assim cada campo funciona independente do outro
+        $users = User::query()
+        ->when($search, function ($query) use ($search) {
             $query->where(function ($q) use ($search) {
                 $q->where('name', 'like', '%' . $search . '%')
-                  ->orWhere('email', 'like', '%' . $search . '%');
-            })
-        )
+                ->orWhere('email', 'like', '%' . $search . '%');
+            });
+        })
+        ->when($startDate, function ($query) use ($startDate) {
+            $query->where('created_at', '>=', Carbon::parse($startDate)->startOfDay());
+        })
+        ->when($endDate, function ($query) use ($endDate) {
+            $query->where('created_at', '<=', Carbon::parse($endDate)->endOfDay());
+        })
+    
         ->orderByDesc('id')
         ->paginate(10)
         ->withQueryString();
         
         return view('users.list', [
             'users' => $users, 
-            'search' => $search
+            'search' => $search,
+            'startDate' => $startDate,
+            'endDate' => $endDate
         ]);
     }
 

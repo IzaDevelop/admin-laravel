@@ -12,6 +12,14 @@
             <input type="text" name="search" class="form-search" value="{{ request('search') }}"
                 placeholder="Buscar nome ou e-mail">
 
+            {{-- para data e hora utilize datetime-local no type --}}
+            <input type="date" name="startDate" class="form-search" value="{{ request('startDate') }}"
+                placeholder="Buscar nome ou e-mail">
+
+            {{-- para data e hora utilize datetime-local no type --}}
+            <input type="date" name="endDate" class="form-search" value="{{ request('endDate') }}"
+                placeholder="Buscar nome ou e-mail">
+
             <div class="flex flex-1 justify-between gap-3">
                 <button type="submit" class="btn-outline">
                     <img src="{{ asset('images/search.svg') }}" alt="Pesquisar">
