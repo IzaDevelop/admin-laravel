@@ -194,8 +194,12 @@ class UserController extends Controller
             $totalRecords = $users->count('id');
             $numberRecordsAllowes = 500;
             if ( $totalRecords > $numberRecordsAllowes ) {
-                return back()
-                ->with('error', "Limite de registros ultrapassados para gerar o PDF. O limite é de $numberRecordsAllowes registros");
+                return redirect()->route('user.list', [
+                    // retorna para a rota caso de erro e mantém os filtros
+                    'search' => $request->search,
+                    'startDate' => $request->startDate,
+                    'endDate' => $request->endDate,
+                ])->with('error', "Limite de registros ultrapassados para gerar o PDF. O limite é de $numberRecordsAllowes registros");
             }
 
             $pdf = Pdf::loadView('users.generate-pdf-users', [
