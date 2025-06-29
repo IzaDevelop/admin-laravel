@@ -20,7 +20,7 @@
             <input type="date" name="endDate" class="form-search" value="{{ request('endDate') }}"
                 placeholder="Buscar nome ou e-mail">
 
-            <div class="flex flex-1 justify-between gap-3">
+            <div class="flex flex-1 wrap justify-between gap-3">
                 <button type="submit" class="btn-outline btn-search">
                     <img src="{{ asset('images/search.svg') }}" alt="Pesquisar">
                 </button>
@@ -34,7 +34,7 @@
         </form>
 
         @if ($users->count())
-            <section class="table-container">
+            <section class="table-container overflow-x-scroll md:overflow-x-hidden">
                 <table class="table">
                     <thead>
                         <tr class="table-header">
