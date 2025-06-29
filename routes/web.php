@@ -23,3 +23,5 @@ Route::get('/generate-pdf/{user}', [UserController::class, 'generatePdf'])->name
 // Route::get('/generate-pdf/{user}', [UserController::class, 'sendPdf'])->name('user.generate-pdf'); // enviar por email
 
 Route::get('/generate-pdf-users', [UserController::class, 'generatePdfUsers'])->name('user.generate-pdf-users');
+
+Route::get('/generate-xls-users', [UserController::class, 'generateXlsfUsers'])->name('user.generate-xls-users');

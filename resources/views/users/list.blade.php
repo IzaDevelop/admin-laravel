@@ -2,13 +2,22 @@
 
 @section('content')
     <article class="content">
-        <section class="content-title">
+        <section class="content-title flex flex-wrap md:flex-nowrap">
             <h1 class="page-title">Listar Usuário</h1>
+
+            <div class="flex gap-3">
+                <a href="{{ url('generate-pdf-users') . (request()->getQueryString() ? '?' . request()->getQueryString() : '') }}" class="btn-outline btn-download">
+                    <img src="{{ asset('images/file-pdf.svg') }}" alt="Download PDF">
+                </a>
+                <a href="{{ url('generate-xls-users') . (request()->getQueryString() ? '?' . request()->getQueryString() : '') }}" class="btn-outline btn-download">
+                    <img src="{{ asset('images/file-xls.svg') }}" alt="Download CSV">
+                </a>
+            </div>
         </section>
 
         <x-alert />
 
-        <form class="flex flex-wrap md:flex-nowrap  gap-5 pb-5" method="GET" action="{{ route('user.list') }}">
+        <form class="flex flex-wrap md:flex-nowrap gap-5 pb-5" method="GET" action="{{ route('user.list') }}">
             <input type="text" name="search" class="form-search" value="{{ request('search') }}"
                 placeholder="Buscar nome ou e-mail">
 
@@ -20,15 +29,12 @@
             <input type="date" name="endDate" class="form-search" value="{{ request('endDate') }}"
                 placeholder="Buscar nome ou e-mail">
 
-            <div class="flex flex-1 wrap justify-between gap-3">
+            <div class="flex flex-1 justify-between gap-3">
                 <button type="submit" class="btn-outline btn-search">
                     <img src="{{ asset('images/search.svg') }}" alt="Pesquisar">
                 </button>
                 <a href="{{ route('user.list') }}" class="btn-outline btn-clean">
                     <img src="{{ asset('images/broom.svg') }}" alt="Limpar">
-                </a>
-                <a href="{{ url('generate-pdf-users') . (request()->getQueryString() ? '?' . request()->getQueryString() : '') }}" class="btn-outline btn-download">
-                    <img src="{{ asset('images/download.svg') }}" alt="Download">
                 </a>
             </div>
         </form>

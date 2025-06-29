@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -192,14 +193,14 @@ class UserController extends Controller
             ->get();
 
             $totalRecords = $users->count('id');
-            $numberRecordsAllowes = 500;
-            if ( $totalRecords > $numberRecordsAllowes ) {
+            $numberRecordsAllowed = 500;
+            if ( $totalRecords > $numberRecordsAllowed ) {
                 return redirect()->route('user.list', [
                     // retorna para a rota caso de erro e mantém os filtros
                     'search' => $request->search,
                     'startDate' => $request->startDate,
                     'endDate' => $request->endDate,
-                ])->with('error', "Limite de registros ultrapassados para gerar o PDF. O limite é de $numberRecordsAllowes registros");
+                ])->with('error', "Limite de registros ultrapassados para gerar o PDF. O limite é de $numberRecordsAllowed registros");
             }
 
             $pdf = Pdf::loadView('users.generate-pdf-users', [
@@ -209,6 +210,75 @@ class UserController extends Controller
             return $pdf->download('lista-de-usuarios.pdf');
         } catch (Exception $e) {
             return back()->with('error', 'Erro ao gerar o PDF.');
+        }
+    }
+
+    public function generateXlsfUsers(Request $request) 
+    {
+        try {
+            $search = $request->input('search');
+            $startDate = $request->input('startDate');
+            $endDate = $request->input('endDate');
+
+            $users = User::query()
+            ->when($search, function ($query) use ($search) {
+                $query->where(function ($q) use ($search) {
+                    $q->where('name', 'like', '%' . $search . '%')
+                    ->orWhere('email', 'like', '%' . $search . '%');
+                });
+            })
+            ->when($startDate, function ($query) use ($startDate) {
+                $query->where('created_at', '>=', Carbon::parse($startDate)->startOfDay());
+            })
+            ->when($endDate, function ($query) use ($endDate) {
+                $query->where('created_at', '<=', Carbon::parse($endDate)->endOfDay());
+            })
+            ->orderByDesc('name')
+            ->get();
+
+            $totalRecords = $users->count('id');
+            $numberRecordsAllowed = 500;
+            if ( $totalRecords > $numberRecordsAllowed ) {
+                return redirect()->route('user.list', [
+                    // retorna para a rota caso de erro e mantém os filtros
+                    'search' => $request->search,
+                    'startDate' => $request->startDate,
+                    'endDate' => $request->endDate,
+                ])->with('error', "Limite de registros ultrapassados para gerar o Xls. O limite é de $numberRecordsAllowed registros");
+            }
+
+            // arquivo temporário
+            $xlsFileName = tempnam(sys_get_temp_dir(), 'csv_' . Str::ulid());
+
+            // abrir o arquivo
+            $openFile = fopen($xlsFileName, 'w');
+
+            // criar o cabeçalho
+            $header = ['id', 'Nome', 'E-mail', 'Data de Cadastro'];
+
+            // escrever o cabeçalho no arquivo
+            fputcsv($openFile, $header, ';');
+
+            // ler os registros recuperados do bd
+            foreach( $users as $user ) {
+                // criar array com os dados
+                $userArray = [
+                    'id' => $user->id,
+                    'name' => $user->name,
+                    'email' => $user->email,
+                    'created_at' => \Carbon\Carbon::parse($user->created_at)->format('d/m/Y H:i:s')
+                ];
+
+                fputcsv($openFile, $userArray, ';');
+            }
+
+            // fechar o arquivo
+            fclose($openFile);
+
+            // realizar o download do arquivo
+            return response()->download($xlsFileName, 'Lista-de-usuários_'. Str::ulid() . '.csv');
+        } catch (Exception $e) {
+            return back()->with('error', 'Erro ao gerar o Xls.');
         }
     }
 }
