@@ -15,40 +15,40 @@
 
 2. Instale as dependências do PHP:
 ```bash
-   git composer install
+   composer install
 ```
 
 3. Instale as dependências do Node:
 ```bash
-   git npm install
+   npm install
 ```
 
 4. Copie o arquivo .env.example para .env:
 ```bash
-   git cp .env.example .env
+   cp .env.example .env
 ```
 
 5. Gere a chave da aplicação:
 ```bash
-   git php artisan key:generate
+   php artisan key:generate
 ```
 
 6. Configure seu arquivo .env com as credenciais de banco de dados e serviços de e-mail (como Mailtrap ou Iagente).
 
 7. Execute as migrações:
 ```bash
-   git php artisan migrate
+   php artisan migrate
 ```
 
 # ▶️ Rodando o Projeto
 Back-end (Laravel):
 ```bash
-   git php artisan serve
+   php artisan serve
 ```
 
 Front-end (Vite/React):
 ```bash
-   git npm run dev
+   npm run dev
 ```
 
 # 🛠️ Comandos Úteis
