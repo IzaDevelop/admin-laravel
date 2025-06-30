@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ImportCSVController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,3 +26,5 @@ Route::get('/generate-pdf/{user}', [UserController::class, 'generatePdf'])->name
 Route::get('/generate-pdf-users', [UserController::class, 'generatePdfUsers'])->name('user.generate-pdf-users');
 
 Route::get('/generate-xls-users', [UserController::class, 'generateXlsfUsers'])->name('user.generate-xls-users');
+
+Route::post('/import-csv-users', [ImportCSVController::class, 'importCsvUsers'])->name('user.import-csv-users');

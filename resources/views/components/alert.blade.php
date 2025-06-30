@@ -16,7 +16,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             Swal.fire({
                 title: "Erro",
-                text: "{{ session('error') }}",
+                html: "{!! session('error') !!}",
                 icon: "error"
             })
         });

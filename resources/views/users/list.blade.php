@@ -17,6 +17,16 @@
 
         <x-alert />
 
+        <form class="flex flex-wrap md:flex-nowrap gap-5 pb-5" action="{{ route('user.import-csv-users') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+
+            <label class="form-search">
+                <input type="file" name="file" id="file" accept=".csv">
+            </label>
+
+            <button type="submit" class="btn-outline btn-upload"><img src="images/upload-file.svg" alt=""></button>
+        </form>
+
         <form class="flex flex-wrap md:flex-nowrap gap-5 pb-5" method="GET" action="{{ route('user.list') }}">
             <input type="text" name="search" class="form-search" value="{{ request('search') }}"
                 placeholder="Buscar nome ou e-mail">

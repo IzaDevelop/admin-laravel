@@ -1,27 +1,65 @@
-# Requisitos
-Php 8.2 ou superior
-composer 
-node 22.15.0 ou superior
+# 📦 Requisitos
 
-## Comandos usados no projeto
-`` composer create-project laravel/laravel . `` 
-`` php artisan serve ``
-`` php artisan make:controller nomeDoController``
-`` php artisan make:view pasta/nomeDaView ``
-`` php artisan migrate ``
-`` npm i ``
-`` npm run dev ``
-`` php artisan make:component nomeDoComponente --view `` 
-`` php artisan make:request nomeDoRequest `` 
-`` php artisan make:mail nomeDaClasse ``
+- **PHP** 8.2 ou superior  
+- **Composer**  
+- **Node.js** 22.15.0 ou superior  
+- **NPM**
 
-### Rodar o projeto
-Duplicar o arquivo ".env.exemple" e renomear para ".env"
+# ⚙️ Instalação do Projeto
 
-Colocar seu Username e Password do mailtrap ou Iagente no arquivo env
+1. Clone o repositório:
+```bash
+   git clone <seu-repositório>
+   cd <nome-do-projeto>
+```
 
-``composer install`` para as dependências 
+2. Instale as dependências do PHP:
+```bash
+   git composer install
+```
 
-``php artisan key:generate`` para gerar a chave
+3. Instale as dependências do Node:
+```bash
+   git npm install
+```
 
-`` php artisan serve `` rodar no navegador
+4. Copie o arquivo .env.example para .env:
+```bash
+   git cp .env.example .env
+```
+
+5. Gere a chave da aplicação:
+```bash
+   git php artisan key:generate
+```
+
+6. Configure seu arquivo .env com as credenciais de banco de dados e serviços de e-mail (como Mailtrap ou Iagente).
+
+7. Execute as migrações:
+```bash
+   git php artisan migrate
+```
+
+# ▶️ Rodando o Projeto
+Back-end (Laravel):
+```bash
+   git php artisan serve
+```
+
+Front-end (Vite/React):
+```bash
+   git npm run dev
+```
+
+# 🛠️ Comandos Úteis
+| Descrição                                       | Comando                                              |
+| ----------------------------------------------- | ---------------------------------------------------- |
+| Criar novo projeto Laravel                      | `composer create-project laravel/laravel .`          |
+| Rodar servidor local                            | `php artisan serve`                                  |
+| Criar controller                                | `php artisan make:controller NomeDoController`       |
+| Criar componente (Blade)                        | `php artisan make:component NomeDoComponente --view` |
+| Criar form request                              | `php artisan make:request NomeDoRequest`             |
+| Criar e-mail                                    | `php artisan make:mail NomeDaClasse`                 |
+| Criar view (comando Laravel)                    | `php artisan make:view pasta/nomeDaView`             |
+| Criar view (manualmente)                        | `resources/views/pasta/nomeDaView.blade.php`         |
+| Rodar as migrações                              | `php artisan migrate`                                |
