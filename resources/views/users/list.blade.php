@@ -17,7 +17,19 @@
 
         <x-alert />
 
-        <form class="flex flex-wrap md:flex-nowrap gap-5 pb-5" action="{{ route('user.import-csv-users') }}" method="POST" enctype="multipart/form-data">
+        {{-- importação de csv padrão --}}
+        {{-- <form class="flex flex-wrap md:flex-nowrap gap-5 pb-5" action="{{ route('user.import-csv-users') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+
+            <label class="form-search">
+                <input type="file" name="file" id="file" accept=".csv">
+            </label>
+
+            <button type="submit" class="btn-outline btn-upload"><img src="images/upload-file.svg" alt=""></button>
+        </form> --}}
+
+        {{-- importação com job --}}
+        <form class="flex flex-wrap md:flex-nowrap gap-5 pb-5" action="{{ route('user.import-csv-job-users') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <label class="form-search">

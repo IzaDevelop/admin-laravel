@@ -40,6 +40,21 @@
    php artisan migrate
 ```
 
+8. Criar o job:
+```bash
+   php artisan make:job ImportCsvJob
+```
+
+9. Instalar a biblioteca para processar o arquivo gradativamente:
+```bash
+   composer require league/csv
+```
+
+10. Executar o job:
+```bash
+   php artisan queue:work
+```
+
 # ▶️ Rodando o Projeto
 Back-end (Laravel):
 ```bash
@@ -63,3 +78,5 @@ Front-end (Vite/React):
 | Criar view (comando Laravel)                    | `php artisan make:view pasta/nomeDaView`             |
 | Criar view (manualmente)                        | `resources/views/pasta/nomeDaView.blade.php`         |
 | Rodar as migrações                              | `php artisan migrate`                                |
+| Apaga os jobs falhos                            | `php artisan queue:flush`                            |
+| Rodar o job manualmente                         | `php artisan queue:retry all`                        |
