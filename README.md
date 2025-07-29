@@ -80,3 +80,25 @@ Front-end (Vite/React):
 | Rodar as migrações                              | `php artisan migrate`                                |
 | Apaga os jobs falhos                            | `php artisan queue:flush`                            |
 | Rodar o job manualmente                         | `php artisan queue:retry all`                        |
+
+# 🧪 Usando o Tinker para criar usuários
+1. php artisan tinker
+```bash
+   php artisan tinker
+```
+
+2. Agora sim, dentro do prompt do Tinker, digite:
+```bash
+   use App\Models\User;
+```
+
+3. Digite as informações:
+```bash
+   User::create([
+    'name' => 'Teste',
+    'email' => 'teste@email.com',
+    'password' => Hash::make('senha123')
+   ]);
+```
+
+Obs: Se o usuário for criado com sucesso, ele aparecerá no banco — se não, o erro aparecerá direto.

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Jobs\importCsvJob;
+use App\Jobs\ImportCsvJob;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
@@ -33,7 +33,7 @@ class ImportCSVJobController extends Controller
             $path = $request->file('file')->storeAs('uploads', $fileName);
 
             // despachar o job para processar o csv
-            importCsvJob::dispatch($path);
+            ImportCsvJob::dispatch($path);
 
             // redirecionar o usuário, enviar mensagem de sucesso
             return back()->with('success', 'Dados estão sendo importados!.');
