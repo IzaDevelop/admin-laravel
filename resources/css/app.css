@@ -189,6 +189,11 @@
         @apply text-gray-700 mb-1
     }
 
+    .info-text pre,
+    .info-text p {
+        @apply whitespace-break-spaces inline
+    }
+
     .bold {
         @apply font-bold 
     }

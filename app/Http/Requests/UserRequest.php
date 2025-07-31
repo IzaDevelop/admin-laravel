@@ -26,10 +26,13 @@ class UserRequest extends FormRequest
         return [
             'name' => 'required',
             'email' => 'required|email|unique:users,email,'.($user ? $user->id : null),
+            'description' => 'required|string',
             'password' => 'required_if:password,!=,null|min:6'
         ];
     }
 
+    // mensagem personalizada
+    
     // public function messages(): array
     // {
     //     return [

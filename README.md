@@ -55,6 +55,11 @@
    php artisan queue:work
 ```
 
+11. Istalando o react-summernote com o jquery:
+```bash
+   npm install jquery summernote
+```
+
 # ▶️ Rodando o Projeto
 Back-end (Laravel):
 ```bash
@@ -78,6 +83,7 @@ Front-end (Vite/React):
 | Criar view (comando Laravel)                    | `php artisan make:view pasta/nomeDaView`             |
 | Criar view (manualmente)                        | `resources/views/pasta/nomeDaView.blade.php`         |
 | Rodar as migrações                              | `php artisan migrate`                                |
+| Rodar um refresh nas migrações                  | `php artisan migrate:fresh`                          |
 | Apaga os jobs falhos                            | `php artisan queue:flush`                            |
 | Rodar o job manualmente                         | `php artisan queue:retry all`                        |
 

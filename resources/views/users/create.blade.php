@@ -30,6 +30,13 @@
                 value="{{ old('password') }}" class="form-input" required />
             </div>
 
+            <div class="mb-4">
+                <label for="description" class="form-label">Decrição:</label>
+                <textarea type="text" name="description" id="summernote" class="form-input" minlength="1">
+                    {{ old('description') }}
+                </textarea>
+            </div>
+
             <div>
                 <button type="submit" class="btn-create">Cadastrar</button>
             </div>

@@ -43,6 +43,13 @@
                 </div>
             </div>
 
+             <div class="info-row">
+                <div>
+                    <span class="info-text bold">Descrição:</span>
+                    <span class="info-text">{!! $user->description !!}</span>
+                </div>
+            </div>
+
             <div class="info-row">
                 <div>
                     <span class="info-text bold">Criado em:</span>

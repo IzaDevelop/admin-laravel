@@ -87,6 +87,7 @@ class UserController extends Controller
             $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
+                'description' => $request->description,
                 'password' => $request->password
             ]);
 
@@ -106,7 +107,8 @@ class UserController extends Controller
         try {
             $user->update([
                 'name' => $request->name,
-                'email' => $request->email
+                'email' => $request->email,
+                'description' => $request->description,
             ]);
 
             return redirect()->route('user.view', ['user' => $user->id])->with('success', 'Usuário editado com sucesso!');
